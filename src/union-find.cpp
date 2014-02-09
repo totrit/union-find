@@ -43,10 +43,11 @@ public:
 		}
 		if (elements_[father1].rank < elements_[father2].rank) {
 			elements_[father1].father = father2;
-			elements_[father2].rank += elements_[father1].rank;
+		} else if (elements_[father1].rank > elements_[father2].rank) {
+			elements_[father2].father = father1;
 		} else {
 			elements_[father2].father = father1;
-			elements_[father1].rank += elements_[father2].rank;
+			elements_[father1].rank ++;
 		}
 	}
 
@@ -65,7 +66,7 @@ public:
 private:
 	const int BASE_ELEMENTS_NUM = 100000;
 	typedef struct ELEMENT_{
-		int rank = 1;
+		int rank = 0;
 		// If one element's father is -1, that means it does not exist in the collection.
 		int father = -1;
 	}Element;
